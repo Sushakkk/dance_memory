@@ -32,6 +32,14 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
       <div class="container">
+        <div class="hero-image-wrapper">
+          <img
+            src=""
+            alt="Танцевальное фото"
+            class="hero-image"
+            id="hero-image"
+          />
+        </div>
         <h1 id="hero-title"></h1>
         <p id="hero-description"></p>
         <div class="hero-buttons">
@@ -100,7 +108,13 @@
         if (logoIcon) {
           logoIcon.className = CONFIG.site.logoIcon;
         }
-        document.getElementById("logo-text").textContent = CONFIG.site.logoText;
+        document.getElementById("logo-text").innerHTML = CONFIG.site.logoText;
+
+        // Hero image
+        const heroImage = document.getElementById("hero-image");
+        if (heroImage && CONFIG.site.heroImage) {
+          heroImage.src = CONFIG.site.heroImage;
+        }
 
         // Navigation
         const navList = document.getElementById("nav-list");
@@ -194,6 +208,10 @@
           a.rel = "noopener noreferrer";
           if (social.highlight) {
             a.className = "instagram-highlight";
+          } else if (social.icon.includes("telegram")) {
+            a.className = "telegram-highlight";
+          } else if (social.icon.includes("tiktok")) {
+            a.className = "tiktok-highlight";
           }
           a.innerHTML = `<i class="${social.icon}"></i>`;
           socialLinks.appendChild(a);
